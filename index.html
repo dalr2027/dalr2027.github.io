@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WMA4PAI: World Models and Agents for Physical AI</title>
+<meta name="description" content="CVPR 2027 workshop on world models and agents for physical AI. Dream, act, repeat: does the loop compound progress or compound errors?">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <a class="brand" href="#top">WMA4PAI</a>
+  <nav aria-label="Sections">
+    <a href="#about">About</a>
+    <a href="#loop">The loop</a>
+    <a href="#program">Program</a>
+    <a href="#speakers">Speakers</a>
+    <a href="#papers">Call for papers</a>
+    <a href="#organizers">Organizers</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top">
+  <div class="hero-text">
+    <p class="venue">CVPR 2027 workshop · Seattle · June 20 or 21 (date to be confirmed) · half day</p>
+    <h1>World Models and Agents for Physical&nbsp;AI</h1>
+    <p class="tag">Dream, act, repeat.</p>
+    <p class="lede">World models now generate the data that trains agents, test and rank those agents, give them foresight before they act, and learn from what the agents experience. Does that loop compound progress, or compound errors?</p>
+    <div class="cta">
+      <a class="btn primary" href="#papers">Submit a paper</a>
+      <a class="btn" href="#program">See the program</a>
+    </div>
+  </div>
+
+  <div class="hero-diagram">
+    <svg id="loopsvg" viewBox="0 0 520 470" role="img" aria-label="The loop: world models give agents data, evaluation and foresight; the agents' experience retrains the world models. The real world grounds the world models and is where agents are deployed.">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="mk" d="M1 1 L9 5 L1 9"/></marker>
+        <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="mk r" d="M1 1 L9 5 L1 9"/></marker>
+      </defs>
+      <!-- real world -->
+      <path class="ground" d="M190 438 C 90 438, 50 400, 50 276" marker-end="url(#ahr)"/>
+      <path class="ground" d="M330 438 C 430 438, 470 400, 470 266" marker-end="url(#ahr)"/>
+      <text class="gl" x="122" y="460" text-anchor="middle">grounding</text>
+      <text class="gl" x="398" y="460" text-anchor="middle">deployment</text>
+      <!-- world models to agents -->
+      <path class="arc" d="M60 180 C 80 20, 440 20, 460 187" marker-end="url(#ah)"/>
+      <text class="al" x="260" y="66" text-anchor="middle">data</text>
+      <path class="arc" d="M166 205 C 230 140, 290 140, 351 208" marker-end="url(#ah)"/>
+      <text class="al" x="260" y="162" text-anchor="middle">evaluation</text>
+      <!-- agents to world models -->
+      <path class="arc" d="M166 252 C 230 310, 290 310, 351 244" marker-end="url(#ah)"/>
+      <text class="al" x="260" y="300" text-anchor="middle">foresight</text>
+      <path class="arc" d="M400 262 C 380 400, 140 400, 120 275" marker-end="url(#ah)"/>
+      <text class="al" x="260" y="372" text-anchor="middle">experience</text>
+      <!-- nodes -->
+      <g class="node worlds">
+        <rect x="14" y="180" width="152" height="92" rx="14"/>
+        <text x="90" y="206" text-anchor="middle" class="nt">World models</text>
+        <text x="90" y="232" text-anchor="middle" class="gen">generative</text>
+        <text x="90" y="254" text-anchor="middle" class="twin">digital twins</text>
+      </g>
+      <g class="node agents">
+        <rect x="354" y="190" width="152" height="72" rx="14"/>
+        <text x="430" y="220" text-anchor="middle" class="nt">Agents</text>
+        <text x="430" y="244" text-anchor="middle" class="sub">VLAs · policies · planners</text>
+      </g>
+      <g class="node real">
+        <rect x="190" y="420" width="140" height="36" rx="18"/>
+        <text x="260" y="443" text-anchor="middle" class="nt">Real world</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section class="band" id="about">
+  <div class="wrap">
+    <h2>Why study the loop, not the parts</h2>
+    <div class="cols">
+      <div class="prose">
+        <p>Robot learning is bottlenecked by physical interaction. No robot dataset comes close to the scale of web text or video. World models, which predict how the world responds to an agent's actions, promise to move that cost from robot-hours to compute.</p>
+        <p>The first systems now close the loop with foundation-scale models on real robots. VLAW alternates between fine-tuning a video world model on a policy's real rollouts and training the policy on rollouts imagined in that model. When the real rollouts were removed, performance dropped: an early sign that the loop needs grounding.</p>
+        <p>Run as a loop, the roles can act as a <em>flywheel</em>, where each turn makes the next better. They can equally act as an <em>echo chamber</em>, where each component inherits and amplifies the other's errors. Visual fidelity and prediction loss alone do not tell us which one we have.</p>
+      </div>
+      <aside class="families">
+        <h3>Two families of world model</h3>
+        <div class="fam gen">
+          <h4>Generative models</h4>
+          <p>Learned from video and interaction data. Video models such as Cosmos and GAIA-2, and latent or JEPA-style models. They transfer across scenes, but their knowledge is statistical rather than physical.</p>
+        </div>
+        <div class="fam twin">
+          <h4>Digital twins</h4>
+          <p>A reconstruction of one scene, simulated with an explicit physics engine. They obey physics through contact, but are built one scene at a time and fail where the engine's physics is missing.</p>
+        </div>
+        <p class="note">The workshop covers both, and asks for every link which family serves it better.</p>
+      </aside>
+    </div>
+    <p class="ask">Which links transfer progress, which transfer error, which family closes each link best, and how much real-world signal does each link need to stay honest?</p>
+  </div>
+</section>
+
+<section class="wrap" id="loop">
+  <h2>Four links, four questions</h2>
+  <p class="intro">Each session of the program covers one link and one break-point question. Papers say which link and which family they study, and what crosses the link.</p>
+  <div class="table" role="table" aria-label="Links, questions and invited contributions">
+    <div class="row head" role="row"><span role="columnheader">Link</span><span role="columnheader">Break-point question</span><span role="columnheader">We invite</span></div>
+    <div class="row" role="row" id="row-L1"><span role="cell"><b>Data</b> (world models → agents)</span><span role="cell">Does synthetic experience transfer physics, or the generator's artifacts? When does more generated data stop helping?</span><span role="cell">Synthetic-data scaling with real-world evaluation; controllability and physical consistency of generators; generated video vs. twin-simulated data as training sources.</span></div>
+    <div class="row" role="row" id="row-L2"><span role="cell"><b>Evaluation</b> (world models → agents)</span><span role="cell">Does a policy ranking survive the simulator? Can a simulator flag its own false successes?</span><span role="cell">Rank agreement with real or log-replay outcomes; false-success vs. false-failure analyses; uncertainty for simulators; generative models and twins as evaluators of the same policies.</span></div>
+    <div class="row" role="row" id="row-L3"><span role="cell"><b>Foresight</b> (world models → agents)</span><span role="cell">When should an agent imagine rather than act or sense, with which model, and how far ahead?</span><span role="cell">World models as tools for VLM/VLA agents; test-time planning with latent, video or physics-based models; deciding when a rollout is trustworthy enough to act on.</span></div>
+    <div class="row" role="row" id="row-L4"><span role="cell"><b>Experience</b> (agents → world models)</span><span role="cell">Can a world model learn from the agent's experience without inheriting the agent's exploits?</span><span role="cell">Retraining generative models on policy rollouts; system identification and recalibration of twins; agentic real-to-sim; continual world models; detecting exploited model errors.</span></div>
+    <div class="row" role="row"><span role="cell"><b>Whole loop</b></span><span role="cell">Is the loop stable? How much real data keeps it grounded?</span><span role="cell">Co-training of agents and world models; hybrids where twins ground generative models or vice versa; loop-level metrics; benchmarks and platforms.</span></div>
+  </div>
+  <p class="topics"><b>Also in scope:</b> action-conditioned video and multimodal world models; latent and JEPA-style world models; digital twins and real-to-sim reconstruction; hybrids of learned models and physics engines; synthetic data for driving and robotics; closed-loop simulation and policy evaluation; planning and RL in imagination; uncertainty, calibration and failure detection; benchmarks and metrics for decision usefulness; safety of world-model-driven systems.</p>
+</section>
+
+<section class="band" id="program">
+  <div class="wrap">
+    <h2>Program</h2>
+    <p class="intro">The program follows the loop: one invited talk per link, contributed work in between, and a closing panel that brings the four links together. Times are tentative and shown for an afternoon slot. Talks and the panel are recorded through the CVPR Zoom room, and remote attendees can send questions online.</p>
+    <ol class="sched">
+      <li><time>13:00</time><div><b>Opening</b> The loop and the four break-point questions</div></li>
+      <li class="l1"><time>13:10</time><div><b>Data</b> Invited talk</div></li>
+      <li class="l2"><time>13:40</time><div><b>Evaluation</b> Invited talk</div></li>
+      <li><time>14:10</time><div><b>Contributed talks</b> Four orals, one per link</div></li>
+      <li><time>14:40</time><div><b>Coffee and posters</b> Posters hang grouped by link</div></li>
+      <li class="l3"><time>15:20</time><div><b>Foresight</b> Invited talk</div></li>
+      <li class="l4"><time>15:50</time><div><b>Experience</b> Invited talk</div></li>
+      <li class="panel"><time>16:20</time><div><b>Closing panel: Dream, act, repeat?</b> The four speakers, moderated by an organizer. Which link is weakest today, should generative models or digital twins close each link, and how much real data does the loop need?</div></li>
+      <li><time>17:00</time><div><b>Best paper award and closing</b></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="wrap" id="speakers">
+  <h2>Invited speakers</h2>
+  <p class="intro">One speaker per link. Between them they cover both families, two working mainly with generative world models and two mainly with digital twins, from industry and academia. All four join the closing panel.</p>
+  <div class="speakers">
+    <div class="spk"><span class="lk">Data</span><b>To be announced</b></div>
+    <div class="spk"><span class="lk">Evaluation</span><b>To be announced</b></div>
+    <div class="spk"><span class="lk">Foresight</span><b>To be announced</b></div>
+    <div class="spk"><span class="lk">Experience</span><b>To be announced</b></div>
+  </div>
+</section>
+
+<section class="band" id="papers">
+  <div class="wrap">
+    <h2>Call for papers</h2>
+    <div class="cols">
+      <div class="prose">
+        <h3>Two tracks</h3>
+        <p><b>Archival.</b> Full papers up to 8 pages in CVPR 2027 format, published in the CVPR workshop proceedings.</p>
+        <p><b>Non-archival.</b> Extended abstracts up to 4 pages. Work under review elsewhere, position papers and negative results are welcome.</p>
+        <p>Both tracks are reviewed double-blind on OpenReview. All authors need a complete OpenReview profile. Every paper receives written reviews.</p>
+        <h3>The loop card</h3>
+        <p>Every submission includes a short boxed statement, outside the page limit, that says:</p>
+        <ul>
+          <li>which link or links the work studies,</li>
+          <li>which family of world model it uses,</li>
+          <li>what quantity crosses the link, and</li>
+          <li>how that quantity is measured against the real world.</li>
+        </ul>
+        <p>Reviewers use it to assign papers to sessions, and it feeds the workshop's loop map.</p>
+        <h3>Responsible reporting</h3>
+        <p>Please report false-success rates alongside aggregate scores, state your data sources and how you anonymized them, and include a short limitations statement.</p>
+        <p><b>Awards.</b> Organizer-authored papers are not eligible. Organizers do not handle papers from their own institutions.</p>
+      </div>
+      <aside>
+        <h3>Key dates (all AoE)</h3>
+        <ol class="timeline">
+          <li><time>Jan 20, 2027</time>Call for papers and OpenReview open</li>
+          <li><time>Mar 5, 2027</time>Archival submission deadline</li>
+          <li><time>Mar 24, 2027</time>Archival decisions</li>
+          <li><time>Mar 29, 2027</time>Archival author metadata due (CVPR)</li>
+          <li><time>Apr 9, 2027</time>Non-archival submission deadline</li>
+          <li><time>Apr 23, 2027</time>Archival camera-ready</li>
+          <li><time>Apr 30, 2027</time>Non-archival decisions</li>
+          <li class="end"><time>June 20 or 21, 2027</time>Workshop</li>
+        </ol>
+        <p class="note">Archival deadlines follow CVPR. The archival deadline falls after CVPR main-conference decisions, so rejected papers can be revised and submitted.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="outcomes">
+  <h2>What comes out of the day</h2>
+  <div class="outs">
+    <div><h3>A loop map</h3><p>A short, jointly authored paper built from the loop cards, talks and panel. For each link and each family it states what is known to transfer, what is known to break, and what should be measured. Posted on arXiv and on this site.</p></div>
+    <div><h3>Loop-level metrics</h3><p>Shared measures such as agreement between simulated and real policy rankings, and false-success rates, reported separately for generative models and twins. Published here as a seed for a benchmark.</p></div>
+    <div><h3>Open materials</h3><p>Talks, the panel and posters online after the workshop, plus a community channel connecting this workshop with the NeurIPS 2026 and Robot World Models series.</p></div>
+  </div>
+</section>
+
+<section class="band" id="organizers">
+  <div class="wrap">
+    <h2>Organizers</h2>
+    <p class="intro">Industry and academia, two continents, and career stages from postdoc to full professor. The team has organized more than 40 workshops, including WAD, the Embodied AI workshop and both previous editions of the Robot World Models series.</p>
+    <div class="orgs">
+      <article>
+        <div class="photo" data-initials="NT"><img src="images/tsagkas.jpg" alt="Portrait of Nikolaos Tsagkas" loading="lazy" onerror="this.remove()"></div>
+        <div>
+          <h3>Nikolaos Tsagkas</h3>
+          <p class="role">Postdoctoral researcher</p>
+          <p class="aff">University of Amsterdam</p>
+        </div>
+      </article>
+      <article>
+        <div class="photo" data-initials="CG"><img src="images/gumbsh.png" alt="Portrait of Christian Gumbsch" loading="lazy" onerror="this.remove()"></div>
+        <div>
+          <h3>Christian Gumbsch</h3>
+          <p class="role">Postdoctoral researcher</p>
+          <p class="aff">University of Amsterdam</p>
+        </div>
+      </article>
+      <article>
+        <div class="photo" data-initials="JS"><img src="images/schmalfuss.jpeg" alt="Portrait of Jenny Schmalfuss" loading="lazy" onerror="this.remove()"></div>
+        <div>
+          <h3>Jenny Schmalfuss</h3>
+          <p class="role">Research scientist</p>
+          <p class="aff">NVIDIA</p>
+        </div>
+      </article>
+      <article>
+        <div class="photo" data-initials="JM"><img src="images/alvarez.png" alt="Portrait of Jose M. Alvarez" loading="lazy" onerror="this.remove()"></div>
+        <div>
+          <h3>Jose M. Alvarez</h3>
+          <p class="role">Director of research</p>
+          <p class="aff">NVIDIA</p>
+        </div>
+      </article>
+      <article>
+        <div class="photo" data-initials="EG"><img src="images/gavves.jpeg" alt="Portrait of Efstratios Gavves" loading="lazy" onerror="this.remove()"></div>
+        <div>
+          <h3>Efstratios Gavves</h3>
+          <p class="role">Professor</p>
+          <p class="aff">University of Amsterdam</p>
+        </div>
+      </article>
+    </div>
+    <div class="logos" aria-label="Organizing institutions">
+      <img src="images/nvidia.svg" alt="NVIDIA" class="logo-nv">
+      <img src="images/uva.svg" alt="University of Amsterdam" class="logo-uva">
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <b>WMA4PAI</b>
+      <p>World Models and Agents for Physical AI. CVPR 2027, Seattle.</p>
+    </div>
+    <div>
+      <b>Contact</b>
+      <p><a href="mailto:efstratios.gavves@gmail.com">efstratios.gavves@gmail.com</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
