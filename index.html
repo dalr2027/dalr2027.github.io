@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WMA4PAI: World Models and Agents for Physical AI</title>
-<meta name="description" content="CVPR 2027 workshop on world models and agents for physical AI. Dream, act, repeat: does the loop compound progress or compound errors?">
+<title>WMA4PAI: Closing the Loop Between World Models and Agents for Physical AI</title>
+<meta name="description" content="CVPR 2027 workshop on world models and agents for physical AI. Does closing the loop between world models and agents compound progress or errors?">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
@@ -31,9 +31,9 @@
 <section class="hero" id="top">
   <div class="hero-text">
     <p class="venue">CVPR 2027 workshop · Seattle · June 20 or 21 (date to be confirmed) · half day</p>
-    <h1>World Models and Agents for Physical&nbsp;AI</h1>
-    <p class="tag">Dream, act, repeat.</p>
-    <p class="lede">World models now generate the data that trains agents, test and rank those agents, give them foresight before they act, and learn from what the agents experience. Does that loop compound progress, or compound errors?</p>
+    <h1>Dream, Act, Learn, Repeat</h1>
+    <p class="tag">Closing the Loop Between World Models and<br>Agents for Physical&nbsp;AI</p>
+    <p class="lede">World models now generate the data that trains agents, test and rank those agents, give them foresight before they act, and learn from what the agents experience. The workshop asks whether closing the loop between world models and agents compounds progress or errors, and how much real-world data keeps it grounded.</p>
     <div class="cta">
       <a class="btn primary" href="#papers">Submit a paper</a>
       <a class="btn" href="#program">See the program</a>
@@ -86,9 +86,8 @@
     <h2>Why study the loop, not the parts</h2>
     <div class="cols">
       <div class="prose">
-        <p>Robot learning is bottlenecked by physical interaction. No robot dataset comes close to the scale of web text or video. World models, which predict how the world responds to an agent's actions, promise to move that cost from robot-hours to compute.</p>
-        <p>The first systems now close the loop with foundation-scale models on real robots. VLAW alternates between fine-tuning a video world model on a policy's real rollouts and training the policy on rollouts imagined in that model. When the real rollouts were removed, performance dropped: an early sign that the loop needs grounding.</p>
-        <p>Run as a loop, the roles can act as a <em>flywheel</em>, where each turn makes the next better. They can equally act as an <em>echo chamber</em>, where each component inherits and amplifies the other's errors. Visual fidelity and prediction loss alone do not tell us which one we have.</p>
+        <p>World models, which predict how the world responds to an agent's actions, can move part of the cost of robot learning from robot-hours to compute. They already generate training data for agents, rank their policies in closed loop, and guide their next action. The natural next step is to close the loop: retrain the world model on what agents experience, so that models and agents improve each other. The first systems that do this report real-world gains, and removing the real data hurts them.</p>
+        <p>What happens over many iterations is open. A closed loop can compound progress, or let each component inherit the other's errors. Telling the two apart means measuring the loop over iterations, not only the final agent, and asking how much real data keeps it grounded. We study this for both generative world models, learned from video, and digital twins, which simulate a reconstructed scene with a physics engine, because they fail in different ways.</p>
       </div>
       <aside class="families">
         <h3>Two families of world model</h3>
@@ -109,14 +108,14 @@
 
 <section class="wrap" id="loop">
   <h2>Four links, four questions</h2>
-  <p class="intro">Each session of the program covers one link and one break-point question. Papers say which link and which family they study, and what crosses the link.</p>
+  <p class="intro">Three links run from world models to agents and one runs back. Data changes the agent during training; Foresight queries the model at decision time; Experience is what closes the loop.</p>
   <div class="table" role="table" aria-label="Links, questions and invited contributions">
     <div class="row head" role="row"><span role="columnheader">Link</span><span role="columnheader">Break-point question</span><span role="columnheader">We invite</span></div>
     <div class="row" role="row" id="row-L1"><span role="cell"><b>Data</b> (world models → agents)</span><span role="cell">Does synthetic experience transfer physics, or the generator's artifacts? When does more generated data stop helping?</span><span role="cell">Synthetic-data scaling with real-world evaluation; controllability and physical consistency of generators; generated video vs. twin-simulated data as training sources.</span></div>
     <div class="row" role="row" id="row-L2"><span role="cell"><b>Evaluation</b> (world models → agents)</span><span role="cell">Does a policy ranking survive the simulator? Can a simulator flag its own false successes?</span><span role="cell">Rank agreement with real or log-replay outcomes; false-success vs. false-failure analyses; uncertainty for simulators; generative models and twins as evaluators of the same policies.</span></div>
     <div class="row" role="row" id="row-L3"><span role="cell"><b>Foresight</b> (world models → agents)</span><span role="cell">When should an agent imagine rather than act or sense, with which model, and how far ahead?</span><span role="cell">World models as tools for VLM/VLA agents; test-time planning with latent, video or physics-based models; deciding when a rollout is trustworthy enough to act on.</span></div>
-    <div class="row" role="row" id="row-L4"><span role="cell"><b>Experience</b> (agents → world models)</span><span role="cell">Can a world model learn from the agent's experience without inheriting the agent's exploits?</span><span role="cell">Retraining generative models on policy rollouts; system identification and recalibration of twins; agentic real-to-sim; continual world models; detecting exploited model errors.</span></div>
-    <div class="row" role="row"><span role="cell"><b>Whole loop</b></span><span role="cell">Is the loop stable? How much real data keeps it grounded?</span><span role="cell">Co-training of agents and world models; hybrids where twins ground generative models or vice versa; loop-level metrics; benchmarks and platforms.</span></div>
+    <div class="row" role="row" id="row-L4"><span role="cell"><b>Experience</b> (agents → world models)</span><span role="cell">Does the agent's experience reach the states where the model is wrong, or only where the policy already goes?</span><span role="cell">Retraining generative models on policy rollouts; system identification and recalibration of twins; agentic real-to-sim; continual world models; detecting exploited model errors.</span></div>
+    <div class="row" role="row"><span role="cell"><b>Whole loop</b></span><span role="cell">Does the loop keep improving the real agent over iterations? How much real data does it need?</span><span role="cell">Co-training of agents and world models; hybrids where twins ground generative models or vice versa; loop-level metrics; benchmarks and platforms.</span></div>
   </div>
   <p class="topics"><b>Also in scope:</b> action-conditioned video and multimodal world models; latent and JEPA-style world models; digital twins and real-to-sim reconstruction; hybrids of learned models and physics engines; synthetic data for driving and robotics; closed-loop simulation and policy evaluation; planning and RL in imagination; uncertainty, calibration and failure detection; benchmarks and metrics for decision usefulness; safety of world-model-driven systems.</p>
 </section>
@@ -133,7 +132,7 @@
       <li><time>14:40</time><div><b>Coffee and posters</b> Posters hang grouped by link</div></li>
       <li class="l3"><time>15:20</time><div><b>Foresight</b> Invited talk</div></li>
       <li class="l4"><time>15:50</time><div><b>Experience</b> Invited talk</div></li>
-      <li class="panel"><time>16:20</time><div><b>Closing panel: Dream, act, repeat?</b> The four speakers, moderated by an organizer. Which link is weakest today, should generative models or digital twins close each link, and how much real data does the loop need?</div></li>
+      <li class="panel"><time>16:20</time><div><b>Closing panel: Does the loop hold?</b> The four speakers, moderated by an organizer. Which link is weakest today, should generative models or digital twins close each link, and how much real data does the loop need?</div></li>
       <li><time>17:00</time><div><b>Best paper award and closing</b></div></li>
     </ol>
   </div>
@@ -141,7 +140,7 @@
 
 <section class="wrap" id="speakers">
   <h2>Invited speakers</h2>
-  <p class="intro">One speaker per link. Between them they cover both families, two working mainly with generative world models and two mainly with digital twins, from industry and academia. All four join the closing panel.</p>
+  <p class="intro">One speaker per link. Speakers alternate between generative world models and digital twins around the loop, and in the closing panel each link is discussed from both sides.</p>
   <div class="speakers">
     <div class="spk"><span class="lk">Data</span><b>To be announced</b></div>
     <div class="spk"><span class="lk">Evaluation</span><b>To be announced</b></div>
@@ -159,17 +158,7 @@
         <p><b>Archival.</b> Full papers up to 8 pages in CVPR 2027 format, published in the CVPR workshop proceedings.</p>
         <p><b>Non-archival.</b> Extended abstracts up to 4 pages. Work under review elsewhere, position papers and negative results are welcome.</p>
         <p>Both tracks are reviewed double-blind on OpenReview. All authors need a complete OpenReview profile. Every paper receives written reviews.</p>
-        <h3>The loop card</h3>
-        <p>Every submission includes a short boxed statement, outside the page limit, that says:</p>
-        <ul>
-          <li>which link or links the work studies,</li>
-          <li>which family of world model it uses,</li>
-          <li>what quantity crosses the link, and</li>
-          <li>how that quantity is measured against the real world.</li>
-        </ul>
-        <p>Reviewers use it to assign papers to sessions, and it feeds the workshop's loop map.</p>
-        <h3>Responsible reporting</h3>
-        <p>Please report false-success rates alongside aggregate scores, state your data sources and how you anonymized them, and include a short limitations statement.</p>
+        <p>At submission, authors select the link(s) their paper addresses; we use this to assign reviewers and group talks and posters. Papers that close the full loop are encouraged to report results over iterations and with different amounts of real data.</p>
         <p><b>Awards.</b> Organizer-authored papers are not eligible. Organizers do not handle papers from their own institutions.</p>
       </div>
       <aside>
@@ -193,8 +182,8 @@
 <section class="wrap" id="outcomes">
   <h2>What comes out of the day</h2>
   <div class="outs">
-    <div><h3>A loop map</h3><p>A short, jointly authored paper built from the loop cards, talks and panel. For each link and each family it states what is known to transfer, what is known to break, and what should be measured. Posted on arXiv and on this site.</p></div>
-    <div><h3>Loop-level metrics</h3><p>Shared measures such as agreement between simulated and real policy rankings, and false-success rates, reported separately for generative models and twins. Published here as a seed for a benchmark.</p></div>
+    <div><h3>A loop map</h3><p>A short, jointly authored paper built from the accepted papers, talks and panel discussion. For each link and each family it states what is known to transfer, what is known to break, and what should be measured. Posted on arXiv and on this site.</p></div>
+    <div><h3>Shared metrics</h3><p>Shared metrics at two levels, reported separately for generative models and twins: per link (agreement between simulated and real policy rankings, false-success rates) and for the whole loop (real-world performance over iterations and its dependence on the share of real data). Published here as a seed for a benchmark.</p></div>
     <div><h3>Open materials</h3><p>Talks, the panel and posters online after the workshop, plus a community channel connecting this workshop with the NeurIPS 2026 and Robot World Models series.</p></div>
   </div>
 </section>
@@ -258,7 +247,7 @@
   <div class="wrap foot">
     <div>
       <b>WMA4PAI</b>
-      <p>World Models and Agents for Physical AI. CVPR 2027, Seattle.</p>
+      <p>Closing the Loop Between World Models and Agents for Physical AI. CVPR 2027, Seattle.</p>
     </div>
     <div>
       <b>Contact</b>

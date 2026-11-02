@@ -30,7 +30,7 @@ a{color:inherit}
 .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(12px,2vw,24px) clamp(16px,4vw,48px) clamp(28px,4vw,48px);max-width:1360px;margin:0 auto}
 .venue{font:600 .95rem/1.4 var(--display);color:var(--ink-2);margin:0 0 12px}
 h1{font:800 clamp(2.6rem,6.2vw,5.4rem)/.98 var(--display);font-stretch:85%;letter-spacing:-.03em;margin:0 0 10px;text-wrap:balance}
-.tag{font:italic 400 clamp(1.5rem,2.6vw,2.2rem)/1.2 var(--serif);margin:0 0 14px;color:var(--gen)}
+.tag{font:italic 400 clamp(1.25rem,2vw,1.7rem)/1.25 var(--serif);margin:0 0 16px;color:var(--gen);max-width:24em}
 .lede{max-width:34em;font-size:1.125rem;margin:0 0 20px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
 .btn{font:600 1rem var(--display);padding:12px 22px;border-radius:999px;border:2px solid var(--ink);text-decoration:none;transition:background .15s,color .15s}
