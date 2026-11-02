@@ -41,41 +41,59 @@
   </div>
 
   <div class="hero-diagram">
-    <svg id="loopsvg" viewBox="0 0 520 470" role="img" aria-label="The loop: world models give agents data, evaluation and foresight; the agents' experience retrains the world models. The real world grounds the world models and is where agents are deployed.">
+    <svg id="loopsvg" class="simple" viewBox="0 0 520 410" role="img" aria-label="A globe, standing for world models, and a robot, standing for agents, linked by two moving arrows: world models give agents data, evaluation and foresight, and the agents' experience updates the world models. The real world grounds the world models and is where agents are deployed.">
       <defs>
         <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="mk" d="M1 1 L9 5 L1 9"/></marker>
         <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="mk r" d="M1 1 L9 5 L1 9"/></marker>
+        <clipPath id="globeclip"><circle cx="100" cy="180" r="70"/></clipPath>
       </defs>
+
+      <!-- globe: world models -->
+      <g class="globe">
+        <circle cx="100" cy="180" r="70" class="gfill"/>
+        <g clip-path="url(#globeclip)" class="gline">
+          <ellipse cx="100" cy="180" rx="30" ry="70"/>
+          <ellipse cx="100" cy="180" rx="58" ry="70"/>
+          <line x1="100" y1="110" x2="100" y2="250"/>
+          <line x1="30" y1="180" x2="170" y2="180"/>
+          <path d="M36 142 Q100 160 164 142"/>
+          <path d="M36 218 Q100 200 164 218"/>
+        </g>
+        <g clip-path="url(#globeclip)" class="land">
+          <path d="M52 150 C 62 128, 88 124, 96 140 C 100 154, 84 162, 76 176 C 66 186, 50 172, 52 150 Z"/>
+          <path d="M112 196 C 128 188, 152 194, 156 212 C 154 232, 130 244, 118 232 C 108 222, 104 204, 112 196 Z"/>
+          <path d="M120 128 C 134 120, 152 128, 150 142 C 140 150, 122 148, 120 128 Z"/>
+        </g>
+        <circle cx="100" cy="180" r="70" class="gring"/>
+      </g>
+      <text class="cap" x="100" y="276" text-anchor="middle">World models</text>
+
+      <!-- robot: agents -->
+      <g class="robot">
+        <line x1="420" y1="108" x2="420" y2="126" class="rl"/>
+        <circle cx="420" cy="104" r="6" class="rdot"/>
+        <rect x="372" y="126" width="96" height="72" rx="20" class="rbody"/>
+        <circle cx="400" cy="158" r="9" class="reye"/>
+        <circle cx="440" cy="158" r="9" class="reye"/>
+        <path d="M402 182 Q420 192 438 182" class="rl"/>
+        <rect x="384" y="206" width="72" height="52" rx="14" class="rbody"/>
+        <rect x="350" y="214" width="22" height="12" rx="6" class="rbody"/>
+        <rect x="468" y="214" width="22" height="12" rx="6" class="rbody"/>
+      </g>
+      <text class="cap" x="420" y="290" text-anchor="middle">Agents</text>
+
+      <!-- arrows: world to agent (top), agent to world (bottom) -->
+      <path class="arc" d="M178 150 C 240 90, 300 90, 358 148" marker-end="url(#ah)"/>
+      <text class="al2" x="268" y="84" text-anchor="middle">data · evaluation · foresight</text>
+      <path class="arc" d="M362 232 C 300 292, 240 292, 182 234" marker-end="url(#ah)"/>
+      <text class="al2" x="272" y="306" text-anchor="middle">experience</text>
+
       <!-- real world -->
-      <path class="ground" d="M190 438 C 90 438, 50 400, 50 276" marker-end="url(#ahr)"/>
-      <path class="ground" d="M330 438 C 430 438, 470 400, 470 266" marker-end="url(#ahr)"/>
-      <text class="gl" x="122" y="460" text-anchor="middle">grounding</text>
-      <text class="gl" x="398" y="460" text-anchor="middle">deployment</text>
-      <!-- world models to agents -->
-      <path class="arc" d="M60 180 C 80 20, 440 20, 460 187" marker-end="url(#ah)"/>
-      <text class="al" x="260" y="66" text-anchor="middle">data</text>
-      <path class="arc" d="M166 205 C 230 140, 290 140, 351 208" marker-end="url(#ah)"/>
-      <text class="al" x="260" y="162" text-anchor="middle">evaluation</text>
-      <!-- agents to world models -->
-      <path class="arc" d="M166 252 C 230 310, 290 310, 351 244" marker-end="url(#ah)"/>
-      <text class="al" x="260" y="300" text-anchor="middle">foresight</text>
-      <path class="arc" d="M400 262 C 380 400, 140 400, 120 275" marker-end="url(#ah)"/>
-      <text class="al" x="260" y="372" text-anchor="middle">experience</text>
-      <!-- nodes -->
-      <g class="node worlds">
-        <rect x="14" y="180" width="152" height="92" rx="14"/>
-        <text x="90" y="206" text-anchor="middle" class="nt">World models</text>
-        <text x="90" y="232" text-anchor="middle" class="gen">generative</text>
-        <text x="90" y="254" text-anchor="middle" class="twin">digital twins</text>
-      </g>
-      <g class="node agents">
-        <rect x="354" y="190" width="152" height="72" rx="14"/>
-        <text x="430" y="220" text-anchor="middle" class="nt">Agents</text>
-        <text x="430" y="244" text-anchor="middle" class="sub">VLAs · policies · planners</text>
-      </g>
+      <path class="ground" d="M186 378 C 120 378, 100 352, 100 300" marker-end="url(#ahr)"/>
+      <path class="ground" d="M334 378 C 400 378, 420 352, 420 308" marker-end="url(#ahr)"/>
       <g class="node real">
-        <rect x="190" y="420" width="140" height="36" rx="18"/>
-        <text x="260" y="443" text-anchor="middle" class="nt">Real world</text>
+        <rect x="190" y="360" width="140" height="36" rx="18"/>
+        <text x="260" y="383" text-anchor="middle" class="nt">Real world</text>
       </g>
     </svg>
   </div>
@@ -142,10 +160,17 @@
   <h2>Invited speakers</h2>
   <p class="intro">One speaker per link. Speakers alternate between generative world models and digital twins around the loop, and in the closing panel each link is discussed from both sides.</p>
   <div class="speakers">
-    <div class="spk"><span class="lk">Data</span><b>To be announced</b></div>
-    <div class="spk"><span class="lk">Evaluation</span><b>To be announced</b></div>
-    <div class="spk"><span class="lk">Foresight</span><b>To be announced</b></div>
-    <div class="spk"><span class="lk">Experience</span><b>To be announced</b></div>
+    <div class="spk"><div class="photo" data-initials="?"></div><div><span class="lk">Data</span><p class="nm">To be announced</p></div></div>
+    <div class="spk confirmed">
+      <div class="photo" data-initials="SZ"><img src="images/zakharov.jpg" alt="Portrait of Sergey Zakharov" loading="lazy" onerror="this.remove()"></div>
+      <div>
+        <span class="lk">Evaluation</span>
+        <h3><a href="https://zakharos.github.io/">Sergey Zakharov</a></h3>
+        <p class="aff">Toyota Research Institute</p>
+      </div>
+    </div>
+    <div class="spk"><div class="photo" data-initials="?"></div><div><span class="lk">Foresight</span><p class="nm">To be announced</p></div></div>
+    <div class="spk"><div class="photo" data-initials="?"></div><div><span class="lk">Experience</span><p class="nm">To be announced</p></div></div>
   </div>
 </section>
 

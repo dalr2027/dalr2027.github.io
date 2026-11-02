@@ -1,0 +1,38 @@
+<!-- Original detailed loop figure. To restore: paste this <svg> in place of the <svg> inside <div class="hero-diagram"> in index.html, and keep the .arc/.al/.mk/.ground/.gl/.node rules in style.css. -->
+    <svg id="loopsvg" viewBox="0 0 520 470" role="img" aria-label="The loop: world models give agents data, evaluation and foresight; the agents' experience retrains the world models. The real world grounds the world models and is where agents are deployed.">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="mk" d="M1 1 L9 5 L1 9"/></marker>
+        <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="mk r" d="M1 1 L9 5 L1 9"/></marker>
+      </defs>
+      <!-- real world -->
+      <path class="ground" d="M190 438 C 90 438, 50 400, 50 276" marker-end="url(#ahr)"/>
+      <path class="ground" d="M330 438 C 430 438, 470 400, 470 266" marker-end="url(#ahr)"/>
+      <text class="gl" x="122" y="460" text-anchor="middle">grounding</text>
+      <text class="gl" x="398" y="460" text-anchor="middle">deployment</text>
+      <!-- world models to agents -->
+      <path class="arc" d="M60 180 C 80 20, 440 20, 460 187" marker-end="url(#ah)"/>
+      <text class="al" x="260" y="66" text-anchor="middle">data</text>
+      <path class="arc" d="M166 205 C 230 140, 290 140, 351 208" marker-end="url(#ah)"/>
+      <text class="al" x="260" y="162" text-anchor="middle">evaluation</text>
+      <!-- agents to world models -->
+      <path class="arc" d="M166 252 C 230 310, 290 310, 351 244" marker-end="url(#ah)"/>
+      <text class="al" x="260" y="300" text-anchor="middle">foresight</text>
+      <path class="arc" d="M400 262 C 380 400, 140 400, 120 275" marker-end="url(#ah)"/>
+      <text class="al" x="260" y="372" text-anchor="middle">experience</text>
+      <!-- nodes -->
+      <g class="node worlds">
+        <rect x="14" y="180" width="152" height="92" rx="14"/>
+        <text x="90" y="206" text-anchor="middle" class="nt">World models</text>
+        <text x="90" y="232" text-anchor="middle" class="gen">generative</text>
+        <text x="90" y="254" text-anchor="middle" class="twin">digital twins</text>
+      </g>
+      <g class="node agents">
+        <rect x="354" y="190" width="152" height="72" rx="14"/>
+        <text x="430" y="220" text-anchor="middle" class="nt">Agents</text>
+        <text x="430" y="244" text-anchor="middle" class="sub">VLAs · policies · planners</text>
+      </g>
+      <g class="node real">
+        <rect x="190" y="420" width="140" height="36" rx="18"/>
+        <text x="260" y="443" text-anchor="middle" class="nt">Real world</text>
+      </g>
+    </svg>

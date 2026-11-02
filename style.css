@@ -95,10 +95,17 @@ em{font-style:italic}
 .sched .panel time{color:#B9C6D6}
 
 /* speakers */
-.speakers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.spk{border:2px dashed var(--rule);border-radius:14px;padding:14px 18px;display:flex;flex-direction:column;gap:14px;min-height:0}
-.spk .lk{font:600 .95rem var(--display);color:var(--ink-2)}
-.spk b{font:700 1.2rem var(--display);color:var(--ink-2)}
+.speakers{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.spk{border:2px dashed var(--rule);border-radius:14px;padding:16px;display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center}
+.spk .photo{width:120px;height:120px}
+.spk .photo:not(:has(img))::before{color:var(--paper)}
+.spk .lk{display:block;font:600 .95rem var(--display);color:var(--ink-2);margin-bottom:4px}
+.spk .nm{margin:0;font:700 1.2rem var(--display);color:var(--ink-2)}
+.spk h3{margin:0;font-size:1.25rem}
+.spk h3 a{text-decoration:none}
+.spk h3 a:hover{text-decoration:underline}
+.spk .aff{margin:2px 0 0}
+.spk.confirmed{border-style:solid;border-color:var(--ink)}
 
 /* timeline */
 .timeline{list-style:none;margin:0 0 16px;padding:0 0 0 22px;border-left:3px solid var(--ink)}
@@ -134,17 +141,34 @@ footer .wrap{padding-block:28px}
 
 @media (max-width:900px){
   .hero,.cols,.outs{grid-template-columns:1fr}
-  .speakers{grid-template-columns:1fr 1fr}
   .row{grid-template-columns:1fr;gap:6px}
   .row.head{display:none}
 }
 @media (max-width:520px){
   .orgs article{grid-template-columns:72px 1fr}
   .photo{width:72px;height:72px}
-  .speakers{grid-template-columns:1fr}
   .sched li{grid-template-columns:3.6em 1fr}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .arc,.ground{animation:none}
+}
+
+/* simplified hero figure */
+.simple .gfill{fill:var(--paper)}
+.simple .gline{fill:none;stroke:var(--gen);stroke-width:1.6;opacity:.55}
+.simple .gring{fill:none;stroke:var(--gen);stroke-width:3}
+.simple .rbody{fill:var(--paper);stroke:var(--ink);stroke-width:3}
+.simple .rl{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.simple .rdot{fill:var(--twin);stroke:var(--ink);stroke-width:3}
+.simple .reye{fill:var(--twin)}
+.simple .cap{font-size:17px;font-weight:800;fill:var(--ink)}
+.simple .arc{stroke-width:3}
+.simple .land{fill:var(--gen);opacity:.28}
+.simple .al2{font-size:15px;font-weight:600;fill:var(--ink-2)}
+
+@media (max-width:640px){
+  .speakers{grid-template-columns:1fr}
+  .spk{grid-template-columns:84px 1fr}
+  .spk .photo{width:84px;height:84px}
 }
