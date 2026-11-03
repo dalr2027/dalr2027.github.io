@@ -86,7 +86,8 @@ em{font-style:italic}
 .topics{max-width:52em;margin-top:18px;color:var(--ink-2);font-size:1rem}
 
 /* schedule */
-.sched{list-style:none;padding:0;margin:0;max-width:52em}
+.sched{list-style:none;padding:0;margin:0;columns:2;column-gap:40px}
+.sched li{break-inside:avoid}
 .sched li{display:grid;grid-template-columns:8.2em 1fr;gap:16px;padding:8px 0 8px 16px;border-bottom:1px solid var(--rule);border-left:5px solid transparent;line-height:1.5}
 .sched time{white-space:nowrap;font:700 1rem var(--display);font-variant-numeric:tabular-nums;color:var(--ink-2)}
 .sched b{font-family:var(--display);font-weight:700;display:block}
@@ -195,3 +196,27 @@ footer .wrap{padding-block:28px}
   .spk-group .spk,.spk-group .spk.confirmed{flex-direction:row;justify-content:flex-start;text-align:left;gap:14px;padding:14px;min-height:0}
   .spk-group .spk .photo{width:72px;height:72px;flex:none}
 }
+
+/* speaker links: visible and clickable across the whole card */
+.spk{position:relative}
+.spk h3 a{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:var(--gen)}
+.spk h3 a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.spk h3 a:hover{text-decoration-thickness:2.5px}
+.spk:has(h3 a:hover){border-color:var(--gen);background:#fff}
+.spk h3 a:focus-visible{outline:none}
+.spk:has(h3 a:focus-visible){outline:3px solid var(--gen);outline-offset:3px}
+
+/* organizer links */
+.orgs article{position:relative}
+.orgs h3 a{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:var(--gen)}
+.orgs h3 a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.orgs h3 a:hover{text-decoration-thickness:2.5px}
+.orgs article:has(h3 a:hover){background:#fff;box-shadow:inset 0 0 0 2px var(--gen)}
+.orgs h3 a:focus-visible{outline:none}
+.orgs article:has(h3 a:focus-visible){outline:3px solid var(--gen);outline-offset:3px}
+
+@media (max-width:900px){.sched{columns:1}}
+/* speaker hover matches organizers */
+.spk-group .spk.confirmed:has(h3 a:hover){border-color:var(--gen);background:#fff;box-shadow:inset 0 0 0 2px var(--gen)}
+.sched li:nth-child(7){break-before:column}
+@media (max-width:900px){.sched li:nth-child(7){break-before:auto}}
