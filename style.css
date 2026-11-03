@@ -105,6 +105,7 @@ em{font-style:italic}
 .spk h3 a{text-decoration:none}
 .spk h3 a:hover{text-decoration:underline}
 .spk .aff{margin:2px 0 0}
+.spk .tagline{display:inline-block;margin:8px 0 0;padding:2px 10px;border-radius:999px;background:var(--ink);color:var(--mist);font:600 .85rem var(--display)}
 .spk.confirmed{border-style:solid;border-color:var(--ink)}
 
 /* timeline */
